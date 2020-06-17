@@ -2,7 +2,9 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using System.Threading;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace FlwUtilityClass
@@ -222,6 +224,37 @@ namespace FlwUtilityClass
             }
             return (T)result;
 
+        }
+
+
+        public static string SerializeXML(object objectInstance)
+        {
+            string txt = "";
+            try
+            {
+                var emptyNamepsaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+                var serializer = new XmlSerializer(objectInstance.GetType());
+                var settings = new XmlWriterSettings();
+                settings.OmitXmlDeclaration = false;
+                settings.Encoding = new UTF8Encoding(false);
+                settings.ConformanceLevel = ConformanceLevel.Document;
+                var memoryStream = new MemoryStream();
+                using (var writer = XmlWriter.Create(memoryStream, settings))
+                {
+                    serializer.Serialize(writer, objectInstance, emptyNamepsaces);
+                    txt = Encoding.UTF8.GetString(memoryStream.ToArray());
+                }
+            }
+            catch (Exception ex)
+            {
+               
+            }
+            return txt;
+        }
+
+        public static string SerializeJSON(object objectInstance)
+        {
+            return JsonConvert.SerializeObject(objectInstance);
         }
 
 
