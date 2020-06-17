@@ -4,12 +4,12 @@
     <id>$id$</id>
     <version>$version$</version>
     <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>Kolawole Abobade, Dayo Okesola</authors>
+    <owners>Kolawole Abobade, Dayo Okesola</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <description>$description$</description>
-    <releaseNotes>Official release.</releaseNotes>
+    <releaseNotes>Added serialization for XML and Json</releaseNotes>
     <copyright>Copyright 2020</copyright>
     <tags>FLWUtility UtilityLibrary</tags>
   </metadata>
