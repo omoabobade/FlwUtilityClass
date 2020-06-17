@@ -94,6 +94,21 @@ namespace FlwUtilityClass
             return prefix + DecimalToArbitrarySystem(num, 36);
         }
 
+        public static string TimeStampCode(string prefix = "")
+        {
+            try
+            {
+                Thread.Sleep(1);
+                string stamp = DateTime.Now.ToString("yyMMddHHmmssffffff");
+                long num = long.Parse(stamp);
+                return prefix + DecimalToArbitrarySystem(num, 36);
+            }
+            catch (Exception ex)
+            {
+                //Log.Announce(ex);
+                return "";
+            }
+        }
 
         public static string UppercaseFirst(string s)
         {
