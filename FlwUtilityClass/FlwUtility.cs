@@ -273,5 +273,37 @@ namespace FlwUtilityClass
         }
 
 
+        public static string MobileTo234(string mobile)
+        {
+            var k = CleanMobile(mobile);
+            if (k.StartsWith("234") && k.Length == 13)
+            {
+
+            }
+            else if (k.StartsWith("0") && k.Length == 11)
+            {
+                k = "234" + k.Substring(1, 10);
+            }
+            return k;
+        }
+        public static string MobileFrom234(string customerMobile)
+        {
+            customerMobile = CleanMobile(customerMobile);
+
+            if (customerMobile.StartsWith("234"))
+            {
+                if (customerMobile.Length == 13)
+                {
+                    customerMobile = "0" + customerMobile.Substring(3, 10);
+                }
+            }
+            return customerMobile;
+        }
+
+        public static string CleanMobile(string mobile)
+        {
+            return mobile.Replace("+", "");
+        }
+
     }
 }
