@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Xml;
@@ -305,5 +306,26 @@ namespace FlwUtilityClass
             return mobile.Replace("+", "");
         }
 
+        public static string Hash512(string text)
+        {
+            string hash = "";
+            using (SHA512 alg = new SHA512Managed())
+            {
+                byte[] result = alg.ComputeHash(Encoding.UTF8.GetBytes(text));
+                hash = HexStrFromBytes(result).ToUpper();
+            }
+            return hash;
+        }
+
+        private static string HexStrFromBytes(byte[] bytes)
+        {
+            var sb = new StringBuilder();
+            foreach (byte b in bytes)
+            {
+                var hex = b.ToString("x2");
+                sb.Append(hex);
+            }
+            return sb.ToString();
+        }
     }
 }
